@@ -5,7 +5,7 @@ import cv2
 import matplotlib.pyplot as pl
 
 image_list = []
-for filename in glob.glob(r"D:\Introduction to Machinelearning\dataset\*.jpg"):
+for filename in glob.glob(r"Enter your dataset address here"):
     im = cv2.imread(filename)
     image_list.append(cv2.cvtColor(im, cv2.COLOR_BGR2GRAY))
 
@@ -51,6 +51,8 @@ for eigenVector in eigenVectors:
 temp = eigenFaces[2] * 255
 print(temp)
 
+# You can mix eigenfaces together
+
 pl.imshow(eigenFaces[2]+eigenFaces[2]+eigenFaces[5])
 pl.show()
 
@@ -80,42 +82,3 @@ cv2.namedWindow("Result", cv2.WINDOW_AUTOSIZE)
 
 
 
-'''
-cv2.namedWindow("Result", cv2.WINDOW_AUTOSIZE)
-
-output = cv2.resize(mean_image_reshape, (0, 0), fx=2, fy=2)
-cv2.imshow("Result", output)
-
-cv2.namedWindow("Trackbars", cv2.WINDOW_AUTOSIZE)
-
-sliderValues = []
-
-
-def createNewFace():
-    output = mean_image_reshape
-
-    for i in range(0, NUM_EIGEN_FACES):
-        sliderValues[i] = cv2.getTrackbarPos("Weight" + str(i), "Trackbars")
-        weight = sliderValues[i] - MAX_SLIDER_VALUE / 2
-        output = np.add(output, eigenFaces[i] * weight)
-
-    output = cv2.resize(output, (0, 0), fx=2, fy=2)
-    cv2.imshow("Result", output)
-
-
-for i in range(0, NUM_EIGEN_FACES):
-    sliderValues.append(MAX_SLIDER_VALUE/2)
-    cv2.createTrackbar("Weight" + str(i), "Trackbars", MAX_SLIDER_VALUE/2, MAX_SLIDER_VALUE, createNewFace)
-
-
-'''
-print('''Usage:
-    Change the weights using the sliders
-    Click on the result window to reset sliders
-    Hit ESC to terminate program.''')
-''''''
-''''
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-'''
